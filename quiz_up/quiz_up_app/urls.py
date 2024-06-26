@@ -3,4 +3,6 @@ from django.urls import path
 
 urlpatterns =[
     path("", views.landing, name="landing"),
+    path("signin/", views.signin, name="signin"),
+    
 ]
