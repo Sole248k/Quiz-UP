@@ -1,0 +1,67 @@
+{% load static %}
+
+  
+    <link href="{% static 'quiz_up_app\css\signup.css' %}" rel="stylesheet" />
+   
+    <div class="center">
+        <button id="show-login">Login</button>
+    </div>
+    <div class="popup">
+        <div class="close-btn" onclick="closeSignUp()">&times;</div>
+            <div class="form">
+                <div class="logo1">
+                    <a href="#">
+                        <img
+                        src="{% static 'quiz_up_app/img/logo.png' %}"
+                        alt="Logo"
+                        width="150"
+                        />
+                    </a>
+                </div>
+                <h2>Create Account</h2>
+                <hr></hr>
+                <div class ="form-element">
+                    <label for="firstname">First Name</label>
+                    <label for="lastname">Last Name</label>
+                </div>
+                <div class ="form-element">
+                    <input type="firstname" placeholder="First Name" id="firstname" name="fname">
+                    <input type="lastname" placeholder="Last Name" id="lastname" name="lname">
+                </div>
+                <div class ="form-element">
+                    <label for="username">Username</label>
+                </div>
+                <div class ="form-element">
+                    <input type="text" placeholder="Username" id="username" name="username" maxlength="30" required>
+                </div>
+                <div class ="form-element">
+                    <label for="email">Email</label>
+                </div>
+                <div class ="form-element">
+                    <input type="text" placeholder="Email" id="email" name="email" maxlength="30" required>
+                </div>
+                <div class ="form-element">
+                    <label for="password">Password</label>
+                    <label for="confirmpassword">Confirm Password</label>
+                </div>
+                <div class ="form-element">
+                    <input type="password" placeholder="Password" id="password" name="password" maxlength="16" required>
+                    <input type="confirmpassword" placeholder="Confirm Password" id="confirmpassword" name="confirmpass" maxlength="16" required>
+                </div>
+                <div class="form-element">
+                    <input type="checkbox" id="showpassword" onclick="showPass">
+                    <label for="showpassword">Show Password</label>
+                </div>
+                </div>
+                <div class="form-element">
+                    <button type="submit">Create Account</button>
+                </div>
+                <div class="form-element">
+                    <label for="account">Already have an account?</label>
+                    <a href="/signin/">Sign In</a>
+                </div>
+            </div>
+
+    </div>
+    <script src="{% static 'quiz_up_app\js\signup.js' %}"></script>
+
