@@ -1,0 +1,54 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <link href="{% static '/quiz_up_app/css/mainpage.css' %}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Up</title>
+   
+  </head>
+<body>
+<div class= "fixed w-full z-20 top-0 start-0">
+    <div class="navbar" id="myNavbar">
+      <div class="logoMain">
+        <a href="#"><img src="{% static 'quiz_up_app/img/quizUPLOGO.png' %}" width="100" /></a>
+      </div>
+      <div class="navbarRight">        
+        <tr>
+            <th>  <a class="logout" href="#"> Logout</a> </th>
+            <th>
+                <a href="#"><img class="profileicon" src="{% static 'quiz_up_app/img/profileicon.png' %}"></a>
+            </th>
+          </tr>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="container mx-0 mt-16 min-h-fit min-w-full">
+   
+    
+    <div class="flex min-h-screen min-w-full">
+        <div class="fixed menu w-1/5 bg-[#FEF1CE] border-4 border-x-[#F9B91E] border-y-[#FEF1CE] h-full">
+            <ul class="font-semibold text-[#024AAD]">
+                <li class="bg-[#F9B91E] rounded-lg mb-4 shadow-lg"><a href="#">Practice Questions #1</a></li>
+                <li class="bg-[#F9B91E] rounded-lg shadow-lg"><a href="#">Practice Questions #2</a></li>
+            </ul>
+        </div>
+
+       
+        <div class="flex-1 p-5 ml-[20%] overflow-y-auto">
+            {% block content %}
+            {% include 'quiz_up_app/dragfile.html' %}
+           
+            {% endblock %}
+        </div>
+    </div>
+    </div>
+
+</body>
+</html>

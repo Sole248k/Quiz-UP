@@ -1,0 +1,40 @@
+{% load static tailwind_tags %}
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, height=device-height,
+        initial-scale=1.0" />
+        <title>Quiz UP</title>
+    </head>
+
+    <div class="bg-[#F9B91E] p-5 rounded-lg">
+        <div class="flex flex-col items-start justify-start min-w-fit p-10 rounded-lg bg-[#FEF1CE] m-10 text-[#000000]">
+            <h2 class="text-lg font-semibold mb-4">Sample Question:</h2>
+            <p class="mb-6">What is the capital of France?</p>
+            <form class="space-y-4">
+                <label class="flex items-center space-x-2">
+                    <input type="radio" name="question1" value="A" class="form-radio">
+                    <span>London</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="radio" name="question1" value="B" class="form-radio ">
+                    <span>Berlin</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="radio" name="question1" value="C" class="form-radio ">
+                    <span>Paris</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="radio" name="question1" value="D" class="form-radio">
+                    <span>Rome</span>
+                </label>
+            </form>
+        </div>
+
+        <div class="flex flex-col items-center justify-center m-auto">
+            <button type="button" class="py-5 px-16  me-2 mb-2 text-sm shadow-lg font-semibold focus:outline-none  rounded-full  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-[#FEF1CE] dark:text-[#024AAD] dark:border-[#024AAD] dark:border-[#024AAD] dark:hover:text-white dark:hover:bg-gray-700">See my results</button>
+        </div>
+
+    </div>
+    
