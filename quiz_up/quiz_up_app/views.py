@@ -14,6 +14,15 @@ def landing(request):
     context={}
     return render(request, "quiz_up_app/landing.html", context)
 
+def mainpage(request):
+    return render(request, 'quiz_up_app/mainpage.html')
+
+def generatedquiz(request):
+    return render(request, 'quiz_up_app/generatedquiz.html')
+
+def dragfile(request):
+    return render(request, 'quiz_up_app/dragfile.html')
+
 def signin(request):
     if request.method == "GET":
         identifier = request.GET.get('identifier')
@@ -35,6 +44,7 @@ def signin(request):
             print("Wala yung user")
             return render(request, 'quiz_up_app/signin.html')
     else:
+<<<<<<< HEAD
         return render(request, 'quiz_up_app/signin.html')
 def signup(request):
     if request.method == "POST":
@@ -70,3 +80,9 @@ def signup(request):
 
     else:
         return render(request, 'quiz_up_app/signup.html')
+=======
+        form = UserForm()
+    return render(request, 'quiz_up_app/signup.html', {'form': form})
+
+
+>>>>>>> 0f161aaef93b6afccbe9694898609fa0b6c22a8d
