@@ -40,24 +40,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'quiz_up_app',
     'tailwind',
-<<<<<<< HEAD
     'django_browser_reload',
-    'theme'
+    'theme',
 ]
 
 TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [
      "127.0.0.1",
-=======
-    'theme',
-    'django_browser_reload'
 ]
 
-INTERNAL_IPS = [
-    "127.0.0.1",
->>>>>>> 0f161aaef93b6afccbe9694898609fa0b6c22a8d
-]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
