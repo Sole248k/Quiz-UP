@@ -2,3 +2,4 @@
 .vscode/
 quiz_up_app/__pycache__/
 quiz_up_app/migrations/__pycache__/
+.venv/pyvenv.cfg

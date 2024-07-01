@@ -1,9 +1,13 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.forms import inlineformset_factory
-from django.contrib.auth import authenticate, login
+from datetime import datetime
+from django.shortcuts import render, redirect, get_object_or_404
+
 from .models import *
 from .forms import *
+from django.contrib import messages
+from django.db.models import Q
+from django.http import JsonResponse
+from functools import wraps
+from django.db.models import Count
 
 # Create your views here.
 def landing(request):
@@ -11,34 +15,58 @@ def landing(request):
     return render(request, "quiz_up_app/landing.html", context)
 
 def signin(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-        user = authenticate(request, username=username, password=password)
-        
-        if user is not None:
-            login(request, user)
-            return redirect('landing')  
-        else:
-            return render(request, 'quiz_up_app/signin.html', {'error': 'Invalid username or password'})
-        
-   
-    return render(request, 'quiz_up_app/signin.html')
-
-def signup(request):
-    if request.method == 'POST':
-        form = signup(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
-            user.save()
-            new_user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-            if new_user:
-                login(request, new_user)
-                return redirect('landing')  
-        else:
-            pass
+    if request.method == "GET":
+        identifier = request.GET.get('identifier')
+        passw = request.GET.get('password')
+        now = datetime.now()
+        hour = now.hour
+        greeting = 'Good Morning' if 5 <= hour < 12 else ('Good afternoon' if 12 <= hour < 18 else 'Good Evening')
+        try:
+            user = Users.objects.get(Q(email=identifier) | Q(username=identifier), password=passw)
+            request.session['user'] = {
+                    'username': user.username,
+                    'email': user.email,
+                    'password' : user.password,
+                    'firstname': user.firstname,
+                    'lastname': user.aboutuser
+                }
+            return redirect ('landing')
+        except Users.DoesNotExist as e:
+            print("Wala yung user")
+            return render(request, 'quiz_up_app/signin.html')
     else:
-        form = UserForm()
-    return render(request, 'quiz_up_app/signup.html', {'form': form})
+        return render(request, 'quiz_up_app/signin.html')
+def signup(request):
+    if request.method == "POST":
+        form = UserForm(request.POST or None)
+        if form.is_valid():
+            user = form.save()
+            # Extract the password and confirm password from the POST data
+            password = request.POST.get('password')
+            confirmpass = request.POST.get('confirmpassword')
+
+            # Check if the passwords match
+            if password == confirmpass:
+                # Print user details for debugging
+                print(f"New user created: {user.username}, {user.email}")
+
+                request.session['user'] = {
+                    'firstname': user.firstname,
+                    'lastname': user.lastname,
+                    'username': user.username,
+                    'email': user.email,
+                }
+
+                return redirect('signin')
+            else:
+                # Print error message for debugging
+                print("Passwords do not match.")
+                return render(request, 'quiz_up_app/signup.html')
+
+        else:
+            # Print form errors for debugging
+            print("Form is invalid:", form.errors)
+            return render(request, 'quiz_up_app/signup.html')
+
+    else:
+        return render(request, 'quiz_up_app/signup.html')

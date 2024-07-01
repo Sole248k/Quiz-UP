@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\248kl\OneDrive\Desktop\SoftEng 2 Project\.venv
+set VIRTUAL_ENV=c:\Users\248kl\OneDrive\Desktop\Quiz-UP\.venv
 
 if not defined PROMPT set PROMPT=$P$G
 

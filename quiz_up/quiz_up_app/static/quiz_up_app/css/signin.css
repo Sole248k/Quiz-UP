@@ -104,7 +104,7 @@
       font-family: tahoma;
     }
     
-    label[for=emailuser]{
+    label[for=username]{
       display: flex;
       flex-direction: column;
       height: 25px;

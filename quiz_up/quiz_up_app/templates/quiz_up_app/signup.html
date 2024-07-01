@@ -8,11 +8,13 @@
     </div>
     <div class="popup">
         <div class="close-btn" onclick="closeSignUp()">&times;</div>
+        <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
             <div class="form">
                 <div class="logo1">
                     <a href="#">
                         <img
-                        src="{% static 'quiz_up_app/img/logo.png' %}"
+                        src="{% static 'quiz_up_app/img/quizUPLOGO.png' %}"
                         alt="Logo"
                         width="150"
                         />
@@ -25,8 +27,8 @@
                     <label for="lastname">Last Name</label>
                 </div>
                 <div class ="form-element">
-                    <input type="firstname" placeholder="First Name" id="firstname" name="fname">
-                    <input type="lastname" placeholder="Last Name" id="lastname" name="lname">
+                    <input type="text" placeholder="First Name" id="firstname" name="firstname">
+                    <input type="text" placeholder="Last Name" id="lastname" name="lastname">
                 </div>
                 <div class ="form-element">
                     <label for="username">Username</label>
@@ -46,7 +48,7 @@
                 </div>
                 <div class ="form-element">
                     <input type="password" placeholder="Password" id="password" name="password" maxlength="16" required>
-                    <input type="confirmpassword" placeholder="Confirm Password" id="confirmpassword" name="confirmpass" maxlength="16" required>
+                    <input type="password" placeholder="Confirm Password" id="confirmpassword" name="confirmpassword" maxlength="16" required>
                 </div>
                 <div class="form-element">
                     <input type="checkbox" id="showpassword" onclick="showPass">
@@ -61,7 +63,6 @@
                     <a href="/signin/">Sign In</a>
                 </div>
             </div>
-
+        </form>
     </div>
     <script src="{% static 'quiz_up_app\js\signup.js' %}"></script>
-
