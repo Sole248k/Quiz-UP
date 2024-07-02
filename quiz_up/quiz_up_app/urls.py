@@ -8,4 +8,6 @@ urlpatterns =[
     path("mainpage/", views.mainpage, name="mainpage"),
     path("dragfile/", views.dragfile, name="dragfile"),
     path("generatedquiz/", views.generatedquiz, name="generatedquiz"),
+    path("quizresults/",views.quiz_results, name="quiz_results"),
+    path('quiz/analysis/', views.quiz_analysis, name='quiz_analysis'),
 ]
