@@ -1,5 +1,4 @@
-{% load static %}
-
+{%load static%}
 <link href="{% static 'quiz_up_app/css/signin.css' %}" rel="stylesheet" />
 
 <div class="wrap">
@@ -8,6 +7,8 @@
         <img src="{% static 'quiz_up_app/img/quizUPLOGO.png' %}" alt="Logo" width="100">
         <h1>Sign In</h1>
     </center>
+
+
     <form action="{% url 'signin' %}" method="GET">
         <label for="username">Email/Username</label>
         <input type="text" placeholder="Enter Email or Username" required name="identifier">
@@ -17,4 +18,5 @@
         <label for="donthaveacc">Don't have an account? <a href="{% url 'signup' %}">Sign up</a></label>
     </form>
 </div>
+
 <script src="{% static 'quiz_up_app/js/signin.js' %}"></script>

@@ -3,3 +3,4 @@
 quiz_up_app/__pycache__/
 quiz_up_app/migrations/__pycache__/
 .venv/pyvenv.cfg
+quiz_up/quiz_up/settings.py

@@ -102,7 +102,7 @@
   label{
 
     font-family: tahoma;
-<<<<<<< HEAD
+
     }
      
     .wrap{
@@ -189,8 +189,8 @@
      z-index: 1;
     }
     
-=======
-  }
+
+  
   
   label[for=username]{
     display: flex;
@@ -236,4 +236,3 @@
    z-index: 1;
   }
   
->>>>>>> 0f161aaef93b6afccbe9694898609fa0b6c22a8d

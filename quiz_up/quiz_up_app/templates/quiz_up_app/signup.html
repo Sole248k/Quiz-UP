@@ -1,13 +1,13 @@
+{% extends "quiz_up_app/mainpage.html" %}
 {% load static %}
-
-  
+{% block content %}
     <link href="{% static 'quiz_up_app\css\signup.css' %}" rel="stylesheet" />
    
     <div class="center">
         <button id="show-login">Login</button>
     </div>
     <div class="popup">
-        <div class="close-btn" onclick="closeSignUp()">&times;</div>
+    
         <form action="{% url 'signup' %}" method="POST">
         {% csrf_token %}
             <div class="form">
@@ -24,10 +24,11 @@
                 <hr></hr>
                 <div class ="form-element">
                     <label for="firstname">First Name</label>
-                    <label for="lastname">Last Name</label>
+    
                 </div>
                 <div class ="form-element">
                     <input type="text" placeholder="First Name" id="firstname" name="firstname">
+                    <label for="lastname">Last Name</label>
                     <input type="text" placeholder="Last Name" id="lastname" name="lastname">
                 </div>
                 <div class ="form-element">
@@ -66,3 +67,4 @@
         </form>
     </div>
     <script src="{% static 'quiz_up_app\js\signup.js' %}"></script>
+{%endblock%}

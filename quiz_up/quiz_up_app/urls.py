@@ -1,5 +1,5 @@
 from . import views
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns =[
     path("", views.landing, name="landing"),
@@ -10,4 +10,5 @@ urlpatterns =[
     path("generatedquiz/", views.generatedquiz, name="generatedquiz"),
     path("quizresults/",views.quiz_results, name="quiz_results"),
     path('quiz/analysis/', views.quiz_analysis, name='quiz_analysis'),
+
 ]

@@ -1,17 +1,11 @@
+{% extends "base.html" %}
 {% load static tailwind_tags %}
+{% block content %}
 
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
-    <title>Quiz Results</title>
-</head>
-
-<body class="bg-[#F9B91E] p-5 rounded-lg">
-    <div class="flex flex-col items-start justify-start min-w-fit p-10 rounded-lg bg-[#FEF1CE] m-10 text-[#000000]">
+<body class="bg-[#fefcf5] dark:bg-[#27354c] p-5 rounded-lg">
+    <div class="flex flex-col items-start justify-start p-10 rounded-lg border-[#EBE6EC] bg-[#fefcf5] dark:bg-[#27354c] dark:border-[#1e293b] dark:text-white m-10 text-[#000000]"> 
         <h2 class="text-lg font-semibold mb-4">Quiz Results:</h2>
-        
+
         {% for question in questions %}
         <p class="mb-6">
             <strong>{{ forloop.counter }}. Question:</strong> {{ question.question_text }}<br>
@@ -19,14 +13,14 @@
             <strong>Correct Answer:</strong> {{ question.correct_answer }}
         </p>
         {% endfor %}
-        
+
         <p class="font-semibold text-lg">Score: {{ score }} / {{ questions|length }}</p>
 
-        <!-- Buttons Section -->
         <div class="flex justify-around mt-8">
-            <a href="{% url 'generatedquiz' %}" class="btn btn-primary">Take Quiz Again</a>
-            <a href="{% url 'mainpage' %}" class="btn btn-secondary">Return to Main Page</a>
-            <a href="{% url 'quiz_analysis' %}" class="btn btn-accent">See Analysis</a>
+            <a href="{% url 'mainpage' %}" class="btn text-sm shadow-lg  mr-3 font-semibold focus:outline-none rounded-full bg-[#7b8398] text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">Return to Main Page</a> 
+            <a href="{% url 'quiz_analysis' %}" class="btn text-sm shadow-lg  font-semibold focus:outline-none rounded-full bg-[#7b8398] text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">See Analysis</a> 
         </div>
     </div>
 </body>
+
+{% endblock %}

@@ -11,44 +11,25 @@
    
   </head>
 <body>
-<div class= "fixed w-full z-20 top-0 start-0">
-    <div class="navbar" id="myNavbar">
-      <div class="logoMain">
-        <a href="#"><img src="{% static 'quiz_up_app/img/quizUPLOGO.png' %}" width="100" /></a>
-      </div>
-      <div class="navbarRight">        
-        <tr>
-            <th>  <a class="logout" href="#"> Logout</a> </th>
-            <th>
-                <a href="#"><img class="profileicon" src="{% static 'quiz_up_app/img/profileicon.png' %}"></a>
-            </th>
-          </tr>
-    </div>
-  </div>
-</div>
+  <div class= "fixed w-full z-20 top-0 start-0">
+		<div class="bg-gradient-to-r from-[#FEF1CE] to-[#EBE6EC] dark:bg-gradient-to-r  shadow-lg flex justify-between items-center p-2 sticky top-0 max-w-full">
+			<div class="flex items-center">
+			<a  href="#"><img src="{% static 'quiz_up_app/img/quizUPLOGO.png' %}" width="100" class="h-12 w-full" /></a>
+		
+		</div>
+	  </div>
+	</div>
+	
 
+<div class="container mx-0 mt-16 min-h-fit min-w-full bg-[#FEF1CE] ">
+	   
+		
+				{% block content %}
+			   
+				{% endblock %}
+			</div>
+	
 
-
-  <div class="container mx-0 mt-16 min-h-fit min-w-full">
-   
-    
-    <div class="flex min-h-screen min-w-full">
-        <div class="fixed menu w-1/5 bg-[#FEF1CE] border-4 border-x-[#F9B91E] border-y-[#FEF1CE] h-full">
-            <ul class="font-semibold text-[#024AAD]">
-                <li class="bg-[#F9B91E] rounded-lg mb-4 shadow-lg"><a href="#">Practice Questions #1</a></li>
-                <li class="bg-[#F9B91E] rounded-lg shadow-lg"><a href="#">Practice Questions #2</a></li>
-            </ul>
-        </div>
-
-       
-        <div class="flex-1 p-5 ml-[20%] overflow-y-auto">
-            {% block content %}
-            {% include 'quiz_up_app/dragfile.html' %}
-           
-            {% endblock %}
-        </div>
-    </div>
-    </div>
 
 </body>
 </html>

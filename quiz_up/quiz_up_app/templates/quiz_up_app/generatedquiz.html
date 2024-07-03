@@ -1,41 +1,37 @@
-{% load static tailwind_tags %}
-
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
-    <title>Quiz UP</title>
-</head>
-
-<div class="bg-[#F9B91E] p-5 rounded-lg">
-    <div class="flex flex-col items-start justify-start min-w-fit p-10 rounded-lg bg-[#FEF1CE] m-10 text-[#000000]">
-        <h2 class="text-lg font-semibold mb-4">Sample Question:</h2>
-        
-        <form id="quizForm" class="space-y-4" method="POST" action="{% url 'quiz_results' %}">
-            {% csrf_token %}
-            {% for question in questions %}
-            <p class="mb-6">{{ forloop.counter }}. {{ question.question_text }}</p>
-            <input type="hidden" name="question{{ forloop.counter }}_id" value="{{ question.id }}">
-            <label class="flex items-center space-x-2">
-                <input type="radio" id="q{{ forloop.counter }}_option_A" name="question{{ forloop.counter }}" value="A" class="form-radio">
-                <span>{{ question.option1 }}</span>
-            </label>
-            <label class="flex items-center space-x-2">
-                <input type="radio" id="q{{ forloop.counter }}_option_B" name="question{{ forloop.counter }}" value="B" class="form-radio">
-                <span>{{ question.option2 }}</span>
-            </label>
-            <label class="flex items-center space-x-2">
-                <input type="radio" id="q{{ forloop.counter }}_option_C" name="question{{ forloop.counter }}" value="C" class="form-radio">
-                <span>{{ question.option3 }}</span>
-            </label>
-            <label class="flex items-center space-x-2">
-                <input type="radio" id="q{{ forloop.counter }}_option_D" name="question{{ forloop.counter }}" value="D" class="form-radio">
-                <span>{{ question.option4 }}</span>
-            </label>
-            {% endfor %}
+    {% extends "base.html" %}
+    {% load static tailwind_tags %}
+    {% block content %}
+    <div class="bg-[#fefcf5]  dark:bg-[#27354c] dark:border-[#1e293b] p-1 m-4 mx-5 shadow-lg rounded-lg">
+        <div class="flex flex-col items-center justify-center p-10 rounded-lg border-[#EBE6EC] bg-[#fefcf5] dark:bg-[#27354c] border-4 dark:border-[#1e293b] dark:text-white m-10 text-[#000000]">
+            <h2 class="text-lg font-semibold mb-4">Sample Question:</h2>
             
-            <button type="submit" class="py-5 px-16 me-2 mb-2 text-sm shadow-lg font-semibold focus:outline-none rounded-full hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-[#FEF1CE] dark:text-[#024AAD] dark:border-[#024AAD] dark:border-[#024AAD] dark:hover:text-white dark:hover:bg-gray-700">See my results</button>
-        </form>
+            <form id="quizForm" class="space-y-4" method="POST" action="{% url 'quiz_results' %}">
+                {% csrf_token %}
+                {% for question in questions %}
+                <p class="mb-6">{{ forloop.counter }}. {{ question.question_text }}</p>
+                <input type="hidden" name="question{{ forloop.counter }}_id" value="{{ question.id }}">
+                <label class="flex items-center space-x-2">
+                    <input type="radio" id="q{{ forloop.counter }}_option_A" name="question{{ forloop.counter }}" value="A" class="form-radio">
+                    <span>{{ question.option1 }}</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="radio" id="q{{ forloop.counter }}_option_B" name="question{{ forloop.counter }}" value="B" class="form-radio">
+                    <span>{{ question.option2 }}</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="radio" id="q{{ forloop.counter }}_option_C" name="question{{ forloop.counter }}" value="C" class="form-radio">
+                    <span>{{ question.option3 }}</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="radio" id="q{{ forloop.counter }}_option_D" name="question{{ forloop.counter }}" value="D" class="form-radio">
+                    <span>{{ question.option4 }}</span>
+                </label>
+                {% endfor %}
+            
+                <div class="flex justify-center">
+                    <button type="submit" class="py-5 px-16 text-sm shadow-lg mt-9 font-semibold focus:outline-none rounded-full bg-[#7b8398] text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">See my results</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+    {% endblock %}

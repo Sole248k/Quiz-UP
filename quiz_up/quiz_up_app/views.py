@@ -16,6 +16,7 @@ import google.generativeai as genai
 import pdfplumber
 import re
 
+
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', 'AIzaSyDsOk50xy6RsxkzOgllv5FYTFcLxM04iHY')
 
 # Create your views here.
