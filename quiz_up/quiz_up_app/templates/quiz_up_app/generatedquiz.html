@@ -2,7 +2,7 @@
     {% load static tailwind_tags %}
     {% block content %}
     <div class="bg-[#fefcf5]  dark:bg-[#27354c] dark:border-[#1e293b] p-1 m-4 mx-5 shadow-lg rounded-lg">
-        <div class="flex flex-col items-center justify-center p-10 rounded-lg border-[#EBE6EC] bg-[#fefcf5] dark:bg-[#27354c] border-4 dark:border-[#1e293b] dark:text-white m-10 text-[#000000]">
+        <div class="flex flex-col items-center justify-center p-10   rounded-lg border-[#EBE6EC] bg-[#fefcf5] dark:bg-[#27354c] border-4 dark:border-[#1e293b] dark:text-white m-10 text-[#000000]">
             <h2 class="text-lg font-semibold mb-4">Sample Question:</h2>
             
             <form id="quizForm" class="space-y-4" method="POST" action="{% url 'quiz_results' %}">
@@ -29,7 +29,7 @@
                 {% endfor %}
             
                 <div class="flex justify-center">
-                    <button type="submit" class="py-5 px-16 text-sm shadow-lg mt-9 font-semibold focus:outline-none rounded-full bg-[#7b8398] text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">See my results</button>
+                    <button type="submit" class="py-5 px-16 text-sm shadow-lg mt-9 font-semibold focus:outline-none rounded-full bg-[#f3b41c] border-none text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">See my results</button>
                 </div>
             </form>
         </div>

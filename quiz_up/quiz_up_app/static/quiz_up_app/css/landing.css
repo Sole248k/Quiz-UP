@@ -97,8 +97,8 @@ a {
 .startnow:hover,
 .btn-secondary:hover,
 .btn-accent:hover {
-    background-color: #EBE6EC; /* Light gray hover color */
-    color: #000000;
+    background-color: #f3f4f6; /* Light gray hover color */
+    color: #004AAD;
 }
  
  /* Footer */

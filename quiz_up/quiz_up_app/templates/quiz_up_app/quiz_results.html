@@ -2,8 +2,8 @@
 {% load static tailwind_tags %}
 {% block content %}
 
-<body class="bg-[#fefcf5] dark:bg-[#27354c] p-5 rounded-lg">
-    <div class="flex flex-col items-start justify-start p-10 rounded-lg border-[#EBE6EC] bg-[#fefcf5] dark:bg-[#27354c] dark:border-[#1e293b] dark:text-white m-10 text-[#000000]"> 
+<div class="bg-[#fefcf5] dark:bg-[#27354c] shadow-lg p-5 rounded-lg">
+    <div class="flex flex-col items-start justify-start  p-10 rounded-lg border-[#EBE6EC] bg-[#fefcf5] dark:bg-[#27354c] dark:border-[#1e293b] dark:text-white m-10 text-[#000000]"> 
         <h2 class="text-lg font-semibold mb-4">Quiz Results:</h2>
 
         {% for question in questions %}
@@ -17,10 +17,10 @@
         <p class="font-semibold text-lg">Score: {{ score }} / {{ questions|length }}</p>
 
         <div class="flex justify-around mt-8">
-            <a href="{% url 'mainpage' %}" class="btn text-sm shadow-lg  mr-3 font-semibold focus:outline-none rounded-full bg-[#7b8398] text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">Return to Main Page</a> 
-            <a href="{% url 'quiz_analysis' %}" class="btn text-sm shadow-lg  font-semibold focus:outline-none rounded-full bg-[#7b8398] text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">See Analysis</a> 
+            <a href="{% url 'dragfile' %}" class="btn text-sm shadow-lg  mr-3 font-semibold focus:outline-none rounded-full bg-[#f3b41c] border-none text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">Return to Main Page</a> 
+            <a href="{% url 'quiz_analysis' %}" class="btn text-sm shadow-lg  font-semibold focus:outline-none rounded-full bg-[#f3b41c] border-none text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">See Analysis</a> 
         </div>
     </div>
-</body>
+</div>
 
 {% endblock %}

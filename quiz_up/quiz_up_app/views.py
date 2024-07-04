@@ -63,7 +63,7 @@ def signin(request):
                     'firstname': user.firstname,
                     'lastname': user.lastname,
                 }
-            return redirect ('mainpage')
+            return redirect ('dragfile')
         except Users.DoesNotExist as e:
             print("Wala yung user")
             return render(request, 'quiz_up_app/signin.html')
