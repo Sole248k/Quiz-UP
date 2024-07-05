@@ -10,7 +10,7 @@ def change_theme(request):
         else:
             request.session['is_dark_theme'] = True
 
-        if request.is_ajax():
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             return JsonResponse({'status': 'success'})
         else:
             return redirect(request.META.get('HTTP_REFERER', '/'))
