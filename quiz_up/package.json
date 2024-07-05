@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "daisyui": "^4.12.10"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

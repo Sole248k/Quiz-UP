@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		{% tailwind_css %}
+		<meta name="csrf-token" content="{{ csrf_token }}">
 	</head>
 
 
@@ -92,12 +93,41 @@
 		</div>
 	</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var themeSwitch = document.getElementById('light-switch');
-            var themeToggleLink = document.getElementById('theme-toggle-link');
-            themeSwitch.addEventListener('change', function() {
-                themeToggleLink.click();
-            });
-        });
-    </script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var themeSwitch = document.getElementById('light-switch');
+			var isDarkTheme = {{ is_dark_theme|lower }};
+			themeSwitch.checked = isDarkTheme;
+	
+			if (isDarkTheme) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+	
+			themeSwitch.addEventListener('change', function() {
+				var isDarkTheme = themeSwitch.checked;
+				document.documentElement.classList.toggle('dark', isDarkTheme);
+	
+				var csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+	
+				fetch('{% url "change-theme" %}', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'X-CSRFToken': csrftoken
+					},
+					body: JSON.stringify({ is_dark_theme: isDarkTheme })
+				})
+				.then(response => response.json())
+				.then(data => {
+					if (data.status !== 'success') {
+						console.error('Failed to change theme');
+					}
+				})
+				.catch(error => console.error('Error:', error));
+			});
+		});
+	</script>
+	
+	
