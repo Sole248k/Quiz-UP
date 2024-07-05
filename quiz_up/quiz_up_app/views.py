@@ -38,6 +38,9 @@ def generatedquiz(request):
             context = {
                 'questions': questions
             }
+            if not questions:  # If no questions are found
+                context['error'] = 'No questions found in database.'
+            
             return render(request, 'quiz_up_app/generatedquiz.html', context)
         except Exception as e:
             print(f"Error fetching questions: {e}")
@@ -90,7 +93,7 @@ def signup(request):
                     'email': user.email,
                 }
 
-                return redirect('signin')
+                return redirect('landing')
             else:
                 # Print error message for debugging
                 print("Passwords do not match.")
@@ -297,43 +300,98 @@ def get_correct_answer(correct_answer_str):
     return correct_answer
 
 def quiz_analysis(request):
-    # Assuming `user_answers` is stored in session or passed to this view
+    user_data = request.session.get('user', {})
+    if not user_data:
+        return redirect('signin')  # Redirect to signin if user is not logged in
+
+    user = get_object_or_404(Users, email=user_data['email'])
     user_answers = request.session.get('user_answers', {})
+
     if not user_answers:
         return render(request, 'quiz_up_app/quiz_analysis.html', {'error': 'No quiz data found.'})
 
     document_scores = {}
-    total_questions = {}
-    
-    # Calculate scores for each document
+
     for question_id, user_answer in user_answers.items():
-        question = Question.objects.get(id=question_id)
+        question = get_object_or_404(Question, id=question_id)
         document_id = question.document.id
-        
+
         if document_id not in document_scores:
-            document_scores[document_id] = {'correct': 0, 'total': 0, 'document_title': question.document.title}
+            document_scores[document_id] = {'correct': 0, 'total': 0, 'document': question.document}
         
         document_scores[document_id]['total'] += 1
         
         if question.correct_answer == user_answer:
             document_scores[document_id]['correct'] += 1
 
-    # Calculate percentage and feedback
     analysis = []
+    total_correct = 0
+    total_questions = 0
+
+    current_analyses = []
+
     for doc_id, data in document_scores.items():
-        percentage = (data['correct'] / data['total']) * 100
+        correct = data['correct']
+        total = data['total']
+        percentage = round((correct / total) * 100, 2)
         feedback = "Great job! Just review to maintain your knowledge." if percentage >= 75 else "Focus on reviewing this document to improve your knowledge."
-        
+
+        # Save the analysis for each document
+        document_analysis = QuizAnalysis.objects.create(
+            user=user,
+            document=data['document'],
+            correct=correct,
+            total=total,
+            percentage=percentage,
+            feedback=feedback
+        )
+
+        total_correct += correct
+        total_questions += total
+
         analysis.append({
-            'document_title': data['document_title'],
-            'correct': data['correct'],
-            'total': data['total'],
+            'document_title': data['document'].title,
+            'correct': correct,
+            'total': total,
             'percentage': percentage,
             'feedback': feedback
         })
 
+        # Add the current analysis to the list to associate with the quiz attempt later
+        current_analyses.append(document_analysis)
+
+    # Calculate overall performance for the entire quiz
+    overall_percentage = round((total_correct / total_questions) * 100, 2)
+    overall_feedback = "Excellent overall performance!" if overall_percentage >= 75 else "Consider reviewing the topics to improve your overall performance."
+
+    # Save the overall quiz attempt
+    quiz_attempt = QuizAttempt.objects.create(
+        user=user,
+        title=f"Practice Quiz #{QuizAttempt.objects.filter(user=user).count() + 1}",
+        correct=total_correct,
+        total=total_questions,
+        percentage=overall_percentage,
+        feedback=overall_feedback
+    )
+
+    # Associate only the current analysis records with the quiz attempt
+    quiz_attempt.documents.set(current_analyses)
+
     context = {
         'analysis': analysis,
+        'overall_percentage': overall_percentage,
+        'overall_feedback': overall_feedback
     }
-    
+
     return render(request, 'quiz_up_app/quiz_analysis.html', context)
+
+def quiz_attempt_detail(request, attempt_id):
+    quiz_attempt = get_object_or_404(QuizAttempt, id=attempt_id)
+    document_analyses = quiz_attempt.documents.all().distinct()  # Ensure uniqueness
+
+    context = {
+        'quiz_attempt': quiz_attempt,
+        'document_analyses': document_analyses
+    }
+
+    return render(request, 'quiz_up_app/quiz_attempt_detail.html', context)

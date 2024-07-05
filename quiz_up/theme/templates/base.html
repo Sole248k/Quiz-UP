@@ -13,7 +13,7 @@
 	<div class= "fixed w-full z-20 top-0 start-0">
 		<div class="bg-gradient-to-r from-[#FEF1CE] to-[#EBE6EC] dark:bg-gradient-to-r dark:from-[#1e293b] dark:to-[#151c29]  dark:bg-black shadow-lg flex justify-between items-center p-2 sticky top-0 max-w-full">
 			<div class="flex items-center">
-			<a  href="#"><img src="{% static 'quiz_up_app/img/quizUPLOGO.png' %}" width="100" class="h-12 w-full" /></a>
+			<a  href="{% url 'dragfile' %}"><img src="{% static 'quiz_up_app/img/quizUPLOGO.png' %}" width="100" class="h-12 w-full" /></a>
 			
 			<label class="flex cursor-pointer gap-2">
 				{% if is_dark_theme %}
@@ -59,7 +59,7 @@
 		  <div class="flex items-center space-x-4">      
 			<tr>
 
-				<th>  <a class="text-red-900 dark:text-red-800 font-bold text-lg href="#"> Logout</a> </th>
+				<th>  <a href="{% url 'landing' %}" class="text-red-900 dark:text-red-800 font-bold text-lg"> Logout</a> </th>
 				<th>
 					<a href="#"><img src="{% static 'quiz_up_app/img/profileicon.png' %}" class="h-8"></a>
 				</th>
@@ -69,31 +69,35 @@
 	</div>
 	
 
-<div class="container mx-0 mt-16 min-h-fit min-w-full bg-[#FEF1CE] dark:bg-[#1e293b]">
-	   
-		<div class="flex min-h-screen min-w-full  ">
-			<div class="fixed menu w-1/5 bg--[#FEF1CE] shadow-lg dark:shadow-2xl dark:bg-slate-800  dark:border-x-black border-y-[#000000] border-x-[#EBE6EC] dark:border-y-slate-800 h-full">
+	<div class="container mx-0 mt-16 min-h-fit min-w-full bg-[#FEF1CE] dark:bg-[#1e293b]">
+		<div class="flex min-h-screen min-w-full">
+			<div class="fixed menu w-1/5 bg-[#FEF1CE] shadow-lg dark:shadow-2xl dark:bg-slate-800 dark:border-x-black border-y-[#000000] border-x-[#EBE6EC] dark:border-y-slate-800 h-full">
 				<ul class="font-semibold text-[#024AAD] dark:text-white">
-					<li class="bg-[#FEF1CE] dark:bg-[#1e293b]   rounded-lg mb-4 shadow-lg"><a href="#">Practice Questions #1</a></li>
-					<li class="bg-[#FEF1CE] dark:bg-[#1e293b] rounded-lg shadow-lg"><a href="#">Practice Questions #2</a></li>
+					{% if user_quiz_attempts %}
+						{% for attempt in user_quiz_attempts %}
+							<li class="bg-[#FEF1CE] dark:bg-[#1e293b] rounded-lg mb-4 shadow-lg">
+								<a href="{% url 'quiz_attempt_detail' attempt.id %}">{{ attempt.title }} - {{ attempt.percentage }}%</a>
+							</li>
+						{% endfor %}
+					{% else %}
+						<li class="bg-[#FEF1CE] dark:bg-[#1e293b] rounded-lg mb-4 shadow-lg">No quiz results available.</li>
+					{% endif %}
 				</ul>
 			</div>
 	
-		   
 			<div class="flex-1 p-5 ml-[20%] overflow-y-auto">
 				{% block content %}
-			   
 				{% endblock %}
 			</div>
 		</div>
-</div>
+	</div>
 
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-		var themeSwitch = document.getElementById('light-switch');
-		var themeToggleLink = document.getElementById('theme-toggle-link');
-		themeSwitch.addEventListener('change', function() {
-			themeToggleLink.click();
-		});
-	});
-</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var themeSwitch = document.getElementById('light-switch');
+            var themeToggleLink = document.getElementById('theme-toggle-link');
+            themeSwitch.addEventListener('change', function() {
+                themeToggleLink.click();
+            });
+        });
+    </script>

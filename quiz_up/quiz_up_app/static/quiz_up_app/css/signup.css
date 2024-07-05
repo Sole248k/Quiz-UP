@@ -168,3 +168,64 @@
     color: #F9B91E;
 }
 
+.form .form-element input[type="text"],
+.form .form-element input[type="password"],
+.form .form-element input[type="email"] {
+    display: block;
+    width: calc(100% - 22px); /* Adjust width to consider padding and border */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.15);
+    outline: none;
+}
+
+/* Ensure buttons have consistent styling */
+.form .form-element button[type="submit"] {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-family: Tahoma;
+    background-color: #F9B91E;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Special styling for the delete button */
+.form .form-element button[type="submit"].bg-red-500 {
+    background-color: #e53e3e;
+}
+
+/* Adjustments for the entire form */
+.form {
+    max-width: 500px; /* Ensures the form doesn't exceed the container width */
+    margin: auto;
+}
+
+.form-element {
+    margin-bottom: 15px;
+}
+
+.form h2 {
+    margin-bottom: 20px;
+    color: #1D49A7;
+}
+
+.form hr {
+    width: 100%;
+    margin: 20px 0;
+}
+
+/* Make sure all form elements align similarly */
+.form .form-element label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1D49A7;
+    margin-bottom: 5px;
+}

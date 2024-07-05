@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-NPM_BIN_PATH = "/usr/local/bin/npm"
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
 
 # Application definition
 
@@ -77,6 +77,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'theme.context_processors.theme',
+                'quiz_up_app.context_processors.user_quiz_analyses',
             ],
         },
     },

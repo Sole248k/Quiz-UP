@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+{% block content %}
+
+<div class="bg-[#fefcf5] dark:bg-[#27354c] p-5 shadow-lg rounded-lg"> 
+    <div class="flex flex-col items-start justify-start  p-10 rounded-lg border-[#EBE6EC] bg-[#fefcf5] dark:bg-[#27354c] dark:border-[#1e293b] dark:text-white m-10 text-[#000000]"> 
+        <h2 class="text-lg font-semibold mb-4">{{ quiz_attempt.title }}</h2>
+        <p>
+            Overall Performance: {{ quiz_attempt.correct }} out of {{ quiz_attempt.total }}<br>
+            Percentage: {{ quiz_attempt.percentage }}%<br>
+            Feedback: {{ quiz_attempt.feedback }}
+        </p>
+
+        <h3 class="text-md font-semibold mb-4 mt-6">Document Analyses:</h3>
+        {% for analysis in document_analyses %}
+            <div class="mb-6">
+                <h4 class="text-md font-bold">{{ analysis.document.title }}</h4>
+                <p>
+                    You answered {{ analysis.correct }} out of {{ analysis.total }} questions correctly.<br>
+                    Percentage: {{ analysis.percentage }}%<br>
+                    Feedback: {{ analysis.feedback }}
+                </p>
+            </div>
+        {% endfor %}
+
+        <div class="mt-8">
+            <a href="{% url 'dragfile' %}" class="btn text-sm shadow-lg  mr-3 font-semibold focus:outline-none rounded-full bg-[#f3b41c] border-none text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">Return to Main Page</a>
+            <a href="{% url 'generatedquiz' %}" class="btn text-sm shadow-lg font-semibold focus:outline-none rounded-full bg-[#f3b41c] border-none text-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-slate-900  dark:text-white  dark:hover:text-white dark:hover:bg-gray-700">Take Quiz Again</a> 
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -12,7 +12,7 @@
         {% csrf_token %}
             <div class="form">
                 <div class="logo1">
-                    <a href="#">
+                    <a href="{% url 'landing' %}">
                         <img
                         src="{% static 'quiz_up_app/img/quizUPLOGO.png' %}"
                         alt="Logo"
@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-element">
                     <label for="account">Already have an account?</label>
-                    <a href="/signin/">Sign In</a>
+                    <a href="{% url 'landing' %}">Sign In</a>
                 </div>
             </div>
         </form>

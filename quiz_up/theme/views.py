@@ -6,3 +6,4 @@ def change_theme(request):
     else:
         request.session['is_dark_theme'] = True
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
