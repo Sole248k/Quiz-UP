@@ -20,7 +20,7 @@
                         />
                     </a>
                 </div>
-                <h2>Create Account</h2>
+                <h2 class="font-bold">Create Account</h2>
                 <hr></hr>
                 <div class ="form-element">
                     <label for="firstname">First Name</label>
@@ -45,23 +45,23 @@
                 </div>
                 <div class ="form-element">
                     <label for="password">Password</label>
-                    <label for="confirmpassword">Confirm Password</label>
+                    <input type="password" placeholder="Password" id="password" name="password" maxlength="16" required>
                 </div>
                 <div class ="form-element">
-                    <input type="password" placeholder="Password" id="password" name="password" maxlength="16" required>
+    
+                    <label for="confirmpassword">Confirm Password</label>
                     <input type="password" placeholder="Confirm Password" id="confirmpassword" name="confirmpassword" maxlength="16" required>
                 </div>
                 <div class="form-element">
-                    <input type="checkbox" id="showpassword" onclick="showPass">
-                    <label for="showpassword">Show Password</label>
+                    <input type="checkbox" id="showpassword" onclick="showPass"><label for="showpassword">Show Password</label>
                 </div>
                 </div>
                 <div class="form-element">
-                    <button type="submit">Create Account</button>
+                    <button class="font-bold" type="submit">Create Account</button>
                 </div>
                 <div class="form-element">
-                    <label for="account">Already have an account?</label>
-                    <a href="{% url 'landing' %}">Sign In</a>
+                    <label class="text-[#1D49A7] text-sm font-bold" for="account">Already have an account?</label>
+                    <a class="text-[#F9B91E] font-bold text-sm"href="{% url 'landing' %}">Sign In</a>
                 </div>
             </div>
         </form>

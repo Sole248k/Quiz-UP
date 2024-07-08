@@ -10,11 +10,11 @@
     <title>Quiz Up</title>
    
   </head>
-<body>
+<body class="bg-[#FEF1CE]">
   <div class= "fixed w-full z-20 top-0 start-0">
 		<div class="bg-gradient-to-r from-[#FEF1CE] to-[#EBE6EC] dark:bg-gradient-to-r  shadow-lg flex justify-between items-center p-2 sticky top-0 max-w-full">
 			<div class="flex items-center">
-			<a  href="#"><img src="{% static 'quiz_up_app/img/quizUPLOGO.png' %}" width="100" class="h-12 w-full" /></a>
+			<a  href="{% url 'landing' %}"><img src="{% static 'quiz_up_app/img/quizUPLOGO.png' %}" width="100" class="h-12 w-full" /></a>
 		
 		</div>
 	  </div>
@@ -27,7 +27,7 @@
 				{% block content %}
 			   
 				{% endblock %}
-			</div>
+</div>
 	
 
 

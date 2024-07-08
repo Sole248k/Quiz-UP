@@ -53,7 +53,7 @@
     color: #1D49A7;
     margin: 0px 0px 20px;
     font-family: Tahoma;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .popup .form hr {
@@ -87,7 +87,7 @@
 .popup .form .form-element input[type="confirmpassword"] {
     margin-top: 5px;
     display: block;
-    width: 48%;
+    width: 100%;
     padding: 10px;
     outline: none;
     border: 1px solid #aaa;
@@ -106,7 +106,7 @@
 .popup .form .form-element input[type="confirmpassword"].show-password {
     margin-top: 5px;
     display: block;
-    width: 48%;
+    width: 100%;
     padding: 10px;
     outline: none;
     border: 1px solid #aaa;
@@ -152,7 +152,7 @@
     margin-right: 36%;
 }
 .popup .form .form-element label[for="showpassword"] {
-    margin-right: 20%;
+    margin-right: 30%;
 }
 
 .popup .form .form-element label[for="account"] {
@@ -214,6 +214,7 @@
 .form h2 {
     margin-bottom: 20px;
     color: #1D49A7;
+  
 }
 
 .form hr {
@@ -223,7 +224,7 @@
 
 /* Make sure all form elements align similarly */
 .form .form-element label {
-    display: block;
+    
     font-size: 14px;
     font-weight: bold;
     color: #1D49A7;
